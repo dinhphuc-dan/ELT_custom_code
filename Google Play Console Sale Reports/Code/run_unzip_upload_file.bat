@@ -1,1 +1,0 @@
-C:\Users\admin\.pyenv\pyenv-win\versions\3.10.0\python.exe "G:\ELT_custom_code\Google Play Console Sale Reports\Code\unzip_upload_file.py"
