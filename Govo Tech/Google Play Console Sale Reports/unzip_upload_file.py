@@ -136,8 +136,8 @@ def load_all_table_bigquery(project_id: str, dataset_id: str, start_date:str, pa
 
 """main flow"""
 @flow(timeout_seconds=3600)
-def local_7h20_Google_Play_Console_sale_reports():
-    slack_noti("Flow Google Play Console Report start running")
+def govo_7h20_Google_Play_Console_sale_reports():
+    slack_noti("Flow Govo-Google Play Console Report start running")
     copy_file_from_GPC(path_from=path_google_play_console_sale_reports, path_to=path_savefile_in_bucket)
     download_file_from_bucket(path_from=path_zipfile_in_bucket, path_to=path_zipfile_in_local)
     check_file_download_succeed(file_path_to_check)
@@ -145,7 +145,7 @@ def local_7h20_Google_Play_Console_sale_reports():
     load_csv_file_to_bucket(path_from=path_csvfile_inlocal, path_to=path_savefile_in_bucket)
     delete_all_table_bigquery(project_id=project_id, dataset_id=dataset_id, start_date=last_month_date)
     load_all_table_bigquery(project_id=project_id, dataset_id=dataset_id, start_date=last_month_date, path=path_csvfile_in_bucket )
-    slack_noti("Flow Google Play Console Report run successfully")
+    slack_noti("Flow Govo-Google Play Console Report run successfully")
 
 if __name__ == "__main__":
-    local_7h20_Google_Play_Console_sale_reports()
+    govo_7h20_Google_Play_Console_sale_reports()
