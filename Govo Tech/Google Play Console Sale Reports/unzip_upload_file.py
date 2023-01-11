@@ -82,7 +82,7 @@ def generate_table_name(start_date):
 # basic task for slack noti
 @task(name = "Slack Noti")
 def slack_noti(text_input):
-    slack_webhook_block = SlackWebhook.load("slack-prefect")
+    slack_webhook_block = SlackWebhook.load("govo")
     slack_webhook_block.notify(f"{text_input}")
 
 @task
