@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import subprocess
 from zipfile import ZipFile
 from datetime import date, datetime
@@ -9,7 +10,7 @@ from prefect.blocks.notifications import SlackWebhook
 
 """ define variable"""
 # path
-cwd: str = os.getcwd()
+cwd: str = Path(__file__).parent.absolute()
 base_local_path: str = fr"{cwd}\zipfile\sales"
 path_google_play_console_sale_reports: str = r"gs://pubsite_prod_8737102155398054550/sales"
 path_savefile_in_bucket: str = r"gs://voliovn_app/phucdee"
