@@ -123,7 +123,6 @@ def load_csv_file_to_bucket(path_from, path_to):
 def delete_all_table_bigquery(project_id: str, dataset_id: str, start_date:str):
     for table_name in next(generate_table_name.fn(start_date=start_date)):
         command = create_bigquery_delete_table_cmd.fn(project_id=project_id, dataset_id=dataset_id, table_name=table_name)
-        print(command)
         subprocess.call(command, shell = True)
 
 @task
@@ -131,7 +130,6 @@ def load_all_table_bigquery(project_id: str, dataset_id: str, start_date:str, pa
     for table_name in next(generate_table_name.fn(start_date=start_date)):
         final_path = fr"{path}/{table_name}.csv"
         command = create_bigquery_load_table_cmd.fn(project_id=project_id, dataset_id=dataset_id, table_name=table_name, path=final_path)
-        print(command)
         subprocess.call(command, shell = True)
 
 """main flow"""
