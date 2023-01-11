@@ -9,14 +9,16 @@ from prefect.blocks.notifications import SlackWebhook
 
 """ define variable"""
 # path
-base_local_path: str = r"G:\Google Play Console Sale Reports\zipfile\sales"
+cwd: str = os.getcwd()
+base_local_path: str = fr"{cwd}\zipfile\sales"
 path_google_play_console_sale_reports: str = r"gs://pubsite_prod_8737102155398054550/sales"
 path_savefile_in_bucket: str = r"gs://voliovn_app/phucdee"
 path_zipfile_in_bucket: str = r"gs://voliovn_app/phucdee/sales"
 path_csvfile_in_bucket: str = r"gs://voliovn_app/phucdee/csv_sales"
-path_zipfile_in_local: str = r"G:\Google Play Console Sale Reports\zipfile"
-path_csvfile_inlocal: str = r"G:\Google Play Console Sale Reports\unzipfile\csv_sales"
-file_path_to_check: str = r"G:\Google Play Console Sale Reports\zipfile\sales\salesreport_202008.zip"
+path_zipfile_in_local: str = fr"{cwd}\zipfile"
+path_csvfile_inlocal: str = fr"{cwd}\unzipfile\csv_sales"
+file_path_to_check: str = fr"{cwd}\zipfile\sales\salesreport_202008.zip"
+
 
 #date
 start_date:str = '2020-08-01'
