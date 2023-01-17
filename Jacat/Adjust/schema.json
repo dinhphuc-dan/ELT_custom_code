@@ -1,0 +1,553 @@
+[
+    {
+      "mode": "NULLABLE",
+      "name": "_app_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_app_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_app_version_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_app_version_raw_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_app_token_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_store_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_sdk_version_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_environment_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_created_at_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_created_at_milli_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_received_at_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_activity_kind_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_event_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_engagement_time_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_attribution_updated_at_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_impression_based_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_impression_time_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_click_time_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_deeplink_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_is_deeplink_click_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_network_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_network_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_reattributed_at_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_rejection_reason_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_match_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_att_status_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_tracking_enabled_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_tracking_limited_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_adid_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_android_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_idfa__gps_adid__fire_adid_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_idfv_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_tifa_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_vida_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_win_adid_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_web_uuid_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_rida_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_country_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_country_subdivision_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_city_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_device_manufacturer_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_device_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_device_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_hardware_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_os_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_os_version_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_language_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_timezone_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_connection_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_proxy_ip_address_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_isp_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_installed_at_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_uninstalled_at_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_reinstalled_at_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_iad_conversion_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_time_to_uninstall_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_time_to_reinstall_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_conversion_duration_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_install_begin_time_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_install_finish_time_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_last_session_time_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_last_time_spent_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_session_count_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_is_reattributed_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_ad_impressions_count_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_ad_mediation_platform_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_ad_revenue_network_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_ad_revenue_placement_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_ad_revenue_unit_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_revenue_usd_",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_revenue_float_",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_adgroup_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_tracker_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_sk_source_app_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_sk_app_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_sk_campaign_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_campaign_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_creative_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_is_organic_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_sk_campaign_id__79",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_sk_network_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_ad_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_adgroup_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_campaign_id_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_campaign_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_campaign_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_engagement_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_external_customer_id_",
+      "type": "INTEGER"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_network_subtype_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_network_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_google_ads_placement_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_search_term_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_fb_install_referrer_adgroup_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_fb_install_referrer_ad_objective_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_fb_install_referrer_campaign_group_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_fb_install_referrer_campaign_group_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_fb_install_referrer_campaign_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_fb_install_referrer_campaign_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_fb_install_referrer_account_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_environment_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_event_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_event_subtype_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_original_transaction_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_expired_transaction_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_transaction_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_product_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_purchased_at_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_store_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_sales_region_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_subscription_cancelled_at_",
+      "type": "STRING"
+    }
+  ]
+  
