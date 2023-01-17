@@ -15,5 +15,5 @@ venv.bak/
 # local test
 test.py
 my_logs.log
-unzipfile
-zipfile
+unzipfile/
+zipfile/
