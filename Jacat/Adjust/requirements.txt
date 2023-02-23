@@ -1,6 +1,6 @@
-prefect
-prefect-gcp
-google-cloud-storage
-pathlib
+prefect==2.7.*
+prefect-gcp==0.2.*
+google-cloud-storage==2.7.*
+pathlib==1.0.*
 
 
