@@ -25,7 +25,8 @@ start_date:str = '2023-01-01'
 last_month_date: str = datetime.strftime((datetime.today() - relativedelta(months=1)),'%Y-%m-%d')
 
 #bigquery config
-email_bigquery_owner: str = "github@piontech.co"
+# email_bigquery_owner: str = "github@piontech.co"
+email_bigquery_owner: str = "airbyte-bigquery@all-app-data-374902.iam.gserviceaccount.com"
 project_id = "all-app-data-374902"
 dataset_id = "local_raw_in_app_purchase_all_apps"
 
