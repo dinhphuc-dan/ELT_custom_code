@@ -13,9 +13,9 @@ from prefect.blocks.notifications import SlackWebhook
 cwd: str = Path(__file__).parent.absolute()
 base_local_path: str = fr"{cwd}\zipfile\sales"
 path_google_play_console_sale_reports: str = r"gs://pubsite_prod_8737102155398054550/sales"
-path_savefile_in_bucket: str = r"gs://voliovn_app/phucdee"
-path_zipfile_in_bucket: str = r"gs://voliovn_app/phucdee/sales"
-path_csvfile_in_bucket: str = r"gs://voliovn_app/phucdee/csv_sales"
+path_savefile_in_bucket: str = r"gs://voliovn_app/govo"
+path_zipfile_in_bucket: str = r"gs://voliovn_app/govo/sales"
+path_csvfile_in_bucket: str = r"gs://voliovn_app/govo/csv_sales"
 path_zipfile_in_local: str = fr"{cwd}\zipfile"
 path_csvfile_inlocal: str = fr"{cwd}\unzipfile\csv_sales"
 file_path_to_check: str = fr"{cwd}\zipfile\sales\salesreport_202008.zip"
@@ -126,7 +126,7 @@ def extract_file(base_path:str ,start_date: str):
 def load_csv_file_to_bucket(path_from, path_to):
     command = create_gsutil_command.fn( path_from=path_from, path_to=path_to)
     subprocess.call(command, shell = True)
-#     os.system(r'cmd /k gsutil -m cp -r "C:\Users\admin\Desktop\phucdee\extracted_sales" gs://voliovn_app/sales')
+#     os.system(r'cmd /k gsutil -m cp -r "C:\Users\admin\Desktop\govo\extracted_sales" gs://voliovn_app/sales')
 
 @task
 def delete_all_table_bigquery(project_id: str, dataset_id: str, start_date:str):
