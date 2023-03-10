@@ -21,7 +21,7 @@ path_csvfile_inlocal: str = fr"{cwd}\unzipfile\csv_sales"
 file_path_to_check: str = fr"{cwd}\zipfile\sales\salesreport_202301.zip"
 
 #date
-start_date:str = '2022-12-01'
+start_date:str = '2023-01-01'
 last_month_date: str = datetime.strftime((datetime.today() - relativedelta(months=1)),'%Y-%m-%d')
 
 #bigquery config

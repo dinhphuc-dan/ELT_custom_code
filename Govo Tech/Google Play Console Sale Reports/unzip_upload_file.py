@@ -25,7 +25,7 @@ start_date:str = '2020-08-01'
 last_month_date: str = datetime.strftime((datetime.today() - relativedelta(months=1)),'%Y-%m-%d')
 
 #bigquery config
-email_bigquery_owner: str = "phucdm@volio.vn"
+email_bigquery_owner: str = "airbytebigquery@pdf-reader-2-ab0b8.iam.gserviceaccount.com"
 project_id = "pdf-reader-2-ab0b8"
 dataset_id = "local_raw_in_app_purchase_all_apps"
 
