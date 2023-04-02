@@ -66,6 +66,11 @@
     },
     {
       "mode": "NULLABLE",
+      "name": "_event_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
       "name": "_engagement_time_",
       "type": "INTEGER"
     },
