@@ -5,6 +5,7 @@ from google.oauth2 import service_account
 from google.api_core.exceptions import NotFound
 from dotenv import load_dotenv
 import os
+import json
 
 cwd: str = Path(__file__).parent.absolute()
 load_dotenv()
@@ -36,7 +37,15 @@ def transform_adjust_raw():
     list_latest_csv_file: list = []
     adjust_export_schema: set = set()
     list_csv_file_with_latest_adjust_schema: list = []
-    credentials = service_account.Credentials.from_service_account_file(r'C:\Users\phucdinh\Desktop\ball-run-2048-c8459-b2f2fad569ed.json')
+    # credentials = service_account.Credentials.from_service_account_file(r'C:\Users\phucdinh\Desktop\ball-run-2048-c8459-b2f2fad569ed.json')
+    service_account_env = os.getenv('SERVICE_ACCOUNT')
+    logger.info(f' service account env {service_account_env}')
+    service_account_info = json.loads(service_account_env)
+
+    # service_account_info = json.load(open(r'C:\Users\phucdinh\Desktop\ball-run-2048-c8459-b2f2fad569ed.json'))
+    logger.info(f' service account {service_account_info}')
+    credentials = service_account.Credentials.from_service_account_info(service_account_info)
+
 
     # bucket_name = 'y9kouvla8s1s'
     bucket_name = os.getenv('BUCKET_NAME')
@@ -60,15 +69,17 @@ def transform_adjust_raw():
             adjust_export_schema.add(v[2])
             list_latest_csv_file.append(k)
 
-    # if has more than 1 schema from adjust, raise error
+    # if has more than 1 schema from adjust, raise error, this case happen in the first hour after change schema 
     if len(adjust_export_schema) > 1:
         raise FileExistsError
     else:
         pass
     
+    # item here is only the latest schema
     for item in adjust_export_schema:
         for k,v in list_files_as_dict.items():
             if v[2] == item:
+                schema_id_from_adjust = item
                 list_csv_file_with_latest_adjust_schema.append(k)
 
     logger.info(f' number of files to append - {len(list_latest_csv_file)}')
@@ -77,7 +88,10 @@ def transform_adjust_raw():
 
     bqclient = bigquery.Client(credentials=credentials)
 
-    table_id = os.getenv('TABLE_ID')
+    # table_id = os.getenv('TABLE_ID')
+
+    # create table id based on the schema of adjust
+    table_id = f"{os.getenv('PROJECT_ID')}.{os.getenv('DATASET')}.{schema_id_from_adjust}" 
 
     schema_path = f"{cwd}/schema.json"
 
@@ -105,13 +119,14 @@ def transform_adjust_raw():
         destination_table = bqclient.get_table(table_id) # Make an API request.
         logger.info(f'destination table row after append- {destination_table.num_rows} ')
 
+    # when table is not created, then run the below code
     except NotFound:
         logger.info('RUN EXCEPT')
         for f in list_csv_file_with_latest_adjust_schema:
             file_uri = f"gs://{bucket_name}/" + f"{f}"
             logger.info(f'append file - {f} ')
             job_config = bigquery.LoadJobConfig(
-                autodetect=True,
+                schema=schema,
                 skip_leading_rows=1,
                 source_format=bigquery.SourceFormat.CSV,
                 write_disposition=bigquery.WriteDisposition.WRITE_APPEND

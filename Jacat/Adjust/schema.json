@@ -77,7 +77,7 @@
     {
       "mode": "NULLABLE",
       "name": "_attribution_updated_at_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
@@ -87,7 +87,7 @@
     {
       "mode": "NULLABLE",
       "name": "_impression_time_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
@@ -102,7 +102,7 @@
     {
       "mode": "NULLABLE",
       "name": "_is_deeplink_click_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
@@ -267,12 +267,12 @@
     {
       "mode": "NULLABLE",
       "name": "_uninstalled_at_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
       "name": "_reinstalled_at_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
@@ -282,12 +282,12 @@
     {
       "mode": "NULLABLE",
       "name": "_time_to_uninstall_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
       "name": "_time_to_reinstall_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
@@ -341,16 +341,6 @@
     },
     {
       "mode": "NULLABLE",
-      "name": "_ad_revenue_placement_",
-      "type": "STRING"
-    },
-    {
-      "mode": "NULLABLE",
-      "name": "_ad_revenue_unit_",
-      "type": "STRING"
-    },
-    {
-      "mode": "NULLABLE",
       "name": "_revenue_usd_",
       "type": "FLOAT"
     },
@@ -358,6 +348,16 @@
       "mode": "NULLABLE",
       "name": "_revenue_float_",
       "type": "FLOAT"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_ad_revenue_placement_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_ad_revenue_unit_",
+      "type": "STRING"
     },
     {
       "mode": "NULLABLE",
@@ -372,12 +372,12 @@
     {
       "mode": "NULLABLE",
       "name": "_sk_source_app_id_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
       "name": "_sk_app_id_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
@@ -398,11 +398,6 @@
       "mode": "NULLABLE",
       "name": "_is_organic_",
       "type": "INTEGER"
-    },
-    {
-      "mode": "NULLABLE",
-      "name": "_sk_campaign_id__79",
-      "type": "STRING"
     },
     {
       "mode": "NULLABLE",
@@ -537,7 +532,7 @@
     {
       "mode": "NULLABLE",
       "name": "_subscription_purchased_at_",
-      "type": "STRING"
+      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
@@ -552,7 +547,7 @@
     {
       "mode": "NULLABLE",
       "name": "_subscription_cancelled_at_",
-      "type": "STRING"
+      "type": "INTEGER"
     }
   ]
   
