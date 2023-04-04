@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  ball_run:
+    image: adjust_transform:dev-01
+    container_name: ball_run 
+    profiles:
+      - ball_run
+    restart: unless-stopped
+    entrypoint: ["prefect", "agent", "start", "-q", "ball_run"]
+    environment:
+      - PREFECT_API_URL=${PREFECT_API_URL}
+      - PREFECT_API_KEY=${PREFECT_API_KEY}
+      - APP_NAME=${ball_run_APP_NAME}
+      - SERVICE_ACCOUNT= ${ball_run_SERVICE_ACCOUNT}
+      - BUCKET_NAME= ${ball_run_BUCKET_NAME}
+      - PROJECT_ID=${ball_run_PROJECT_ID}
+      - DATASET=${ball_run_DATASET}
+

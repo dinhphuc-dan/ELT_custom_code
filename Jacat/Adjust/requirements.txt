@@ -1,5 +1,4 @@
 prefect
-prefect-gcp
 google-cloud-storage
 pathlib
 google-cloud-bigquery

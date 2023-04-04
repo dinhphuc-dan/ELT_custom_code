@@ -1,21 +1,21 @@
 from pathlib import Path
-import logging
 from google.cloud import storage, bigquery
 from google.oauth2 import service_account
 from google.api_core.exceptions import NotFound
 from dotenv import load_dotenv
 import os
 import json
+from prefect import task, flow, get_run_logger
+import datetime
+from prefect.blocks.notifications import SlackWebhook
 
 cwd: str = Path(__file__).parent.absolute()
 load_dotenv()
 
 ''' config logger '''
-logger = logging.getLogger(__name__)
-log_format = "%(asctime)s  -  %(levelname)s  -  %(name)s  -  %(filename)s  -  %(message)s"
-
-''' To override the default severity of logging '''
-logger.setLevel('DEBUG')
+# logger = logging.getLogger(__name__)
+# log_format = "%(asctime)s  -  %(levelname)s  -  %(name)s  -  %(filename)s  -  %(message)s"
+# logger.setLevel('DEBUG')
 
 ''' Use FileHandler() to log to a file '''
 # file_handler = logging.FileHandler("mylogs.log")
@@ -23,49 +23,66 @@ logger.setLevel('DEBUG')
 # file_handler.setFormatter(formatter)
 
 ''' Add console log '''
-console = logging.StreamHandler()
-console.setFormatter(logging.Formatter(log_format))
+# console = logging.StreamHandler()
+# console.setFormatter(logging.Formatter(log_format))
 
 ''' Don't forget to add the file handler into the logger '''
-# logger.addHandler(file_handler)
-logger.addHandler(console)
+# # logger.addHandler(file_handler)
+# logger.addHandler(console)
 
+""" basic task for slack noti"""
+@task(name = "Slack Noti")
+def slack_noti(text_input,AppName=os.getenv('APP_NAME')):
+    slack_webhook_block = SlackWebhook.load("adjust")
+    slack_webhook_block.notify(f"Flow {AppName} {text_input}")
 
-def transform_adjust_raw():
+@flow(flow_run_name="{AppName}-on-{date:%Y-%m-%d-%H-%M-%S}",
+      timeout_seconds=3600 
+)
+def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
+                         ServiceAccountEnv=os.getenv('SERVICE_ACCOUNT'),
+                         BucketName=os.getenv('BUCKET_NAME'),
+                         ProjectId=os.getenv('PROJECT_ID'),
+                         Dataset=os.getenv('DATASET'),
+                         date=datetime.datetime.now()
+    ):
+    logger = get_run_logger()
     list_date_from_file_name: list = []
     list_files_as_dict: dict = {}
     list_latest_csv_file: list = []
     adjust_export_schema: set = set()
     list_csv_file_with_latest_adjust_schema: list = []
-    # credentials = service_account.Credentials.from_service_account_file(r'C:\Users\phucdinh\Desktop\ball-run-2048-c8459-b2f2fad569ed.json')
-    service_account_env = os.getenv('SERVICE_ACCOUNT')
-    logger.info(f' service account env {service_account_env}')
-    service_account_info = json.loads(service_account_env)
 
+    ''' storage credential'''
+    service_account_info = json.loads(ServiceAccountEnv)
     # service_account_info = json.load(open(r'C:\Users\phucdinh\Desktop\ball-run-2048-c8459-b2f2fad569ed.json'))
-    logger.info(f' service account {service_account_info}')
     credentials = service_account.Credentials.from_service_account_info(service_account_info)
+    bucket_name = BucketName.strip()
+    bucket_client = storage.Client(credentials=credentials) # make api call to storage
+    list_files_in_bucket = bucket_client.list_blobs(bucket_name) # get list file in storage
 
+    
+    # for file in list_files_in_bucket:
+    #     list_files_as_dict.update({file.name:file.name.split('_')})
+    #     date_from_file_name = file.name.split('_')[1]
+    #     list_date_from_file_name.append(date_from_file_name)
 
-    # bucket_name = 'y9kouvla8s1s'
-    bucket_name = os.getenv('BUCKET_NAME')
-
-    bucket_client = storage.Client(credentials=credentials)
-
-    list_files_in_bucket = bucket_client.list_blobs(bucket_name)
+    # select only newest csv file 
+    # for k,v in list_files_as_dict.items():
+    #     if v[1] == max(list_date_from_file_name):
+    #         adjust_export_schema.add(v[2])
+    #         list_latest_csv_file.append(k)
 
     # handle list of file in bucket
     for file in list_files_in_bucket:
         list_files_as_dict.update({file.name:file.name.split('_')})
-        date_from_file_name = file.name.split('_')[1]
-        list_date_from_file_name.append(date_from_file_name)
-    
-    logger.info(f' list file as dict - {list_files_as_dict}')
-    # logger.info(f' list date - {list_date_from_file_name}')
+        date_from_file_name:str = file.name.split('_')[1]
+        date_from_file_name_as_datetime =  datetime.datetime.strptime(date_from_file_name, '%Y-%m-%dT%H%M%S')
+        list_date_from_file_name.append(date_from_file_name_as_datetime)
 
     # select only newest csv file 
     for k,v in list_files_as_dict.items():
-        if v[1] == max(list_date_from_file_name):
+        if  datetime.datetime.strptime(v[1], '%Y-%m-%dT%H%M%S') >= (max(list_date_from_file_name) - datetime.timedelta(hours=8)):
             adjust_export_schema.add(v[2])
             list_latest_csv_file.append(k)
 
@@ -83,15 +100,10 @@ def transform_adjust_raw():
                 list_csv_file_with_latest_adjust_schema.append(k)
 
     logger.info(f' number of files to append - {len(list_latest_csv_file)}')
-    logger.info(f' list latest csv file - {list_latest_csv_file}')
-    logger.info(f' list csv with latest schemac- {list_csv_file_with_latest_adjust_schema}')
 
+    ''' bigquery credential'''
     bqclient = bigquery.Client(credentials=credentials)
-
-    # table_id = os.getenv('TABLE_ID')
-
-    # create table id based on the schema of adjust
-    table_id = f"{os.getenv('PROJECT_ID')}.{os.getenv('DATASET')}.{schema_id_from_adjust}" 
+    table_id = f"{ProjectId}.{Dataset}.{schema_id_from_adjust}" # set table id with schema hash from adjust
 
     schema_path = f"{cwd}/schema.json"
 
@@ -139,5 +151,15 @@ def transform_adjust_raw():
         destination_table = bqclient.get_table(table_id)
         logger.info(f'destination table row after append- {destination_table.num_rows} ')
 
-if __name__ == "__main__":
+@flow(flow_run_name="{AppName}-on-{date:%Y-%m-%d-%H-%M-%S}",
+      timeout_seconds=3600,
+      retries=0,
+      retry_delay_seconds=10   
+)
+def main_flow(AppName=os.getenv('APP_NAME'), date=datetime.datetime.now()):
+    slack_noti("Run")
     transform_adjust_raw()
+    slack_noti("Completed")
+
+if __name__ == "__main__":
+    main_flow()
