@@ -32,9 +32,9 @@ load_dotenv()
 
 """ basic task for slack noti"""
 @task(name = "Slack Noti")
-def slack_noti(text_input,AppName=os.getenv('APP_NAME')):
+def slack_noti(TextInput,AppName=os.getenv('APP_NAME')):
     slack_webhook_block = SlackWebhook.load("adjust")
-    slack_webhook_block.notify(f"Flow {AppName} {text_input}")
+    slack_webhook_block.notify(f"Flow {AppName} {TextInput}")
 
 @flow(flow_run_name="{AppName}-on-{date:%Y-%m-%d-%H-%M-%S}",
       timeout_seconds=3600 
@@ -47,11 +47,12 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
                          date=datetime.datetime.now()
     ):
     logger = get_run_logger()
+
     list_date_from_file_name: list = []
     list_files_as_dict: dict = {}
     list_latest_csv_file: list = []
     adjust_export_schema: set = set()
-    list_csv_file_with_latest_adjust_schema: list = []
+    list_all_csv_file_with_latest_adjust_schema: list = []
 
     ''' storage credential'''
     service_account_info = json.loads(ServiceAccountEnv)
@@ -83,10 +84,11 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
     # select only newest csv file 
     for k,v in list_files_as_dict.items():
         if  datetime.datetime.strptime(v[1], '%Y-%m-%dT%H%M%S') >= (max(list_date_from_file_name) - datetime.timedelta(hours=8)):
-            adjust_export_schema.add(v[2])
             list_latest_csv_file.append(k)
-
-    # if has more than 1 schema from adjust, raise error, this case happen in the first hour after change schema 
+            if datetime.datetime.strptime(v[1], '%Y-%m-%dT%H%M%S')==(max(list_date_from_file_name)):
+                adjust_export_schema.add(v[2])
+            
+    # if has more than 1 schema from adjust, raise error and stop running code, this case happen in the first hour after change schema 
     if len(adjust_export_schema) > 1:
         raise FileExistsError
     else:
@@ -97,9 +99,7 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
         for k,v in list_files_as_dict.items():
             if v[2] == item:
                 schema_id_from_adjust = item
-                list_csv_file_with_latest_adjust_schema.append(k)
-
-    logger.info(f' number of files to append - {len(list_latest_csv_file)}')
+                list_all_csv_file_with_latest_adjust_schema.append(k)
 
     ''' bigquery credential'''
     bqclient = bigquery.Client(credentials=credentials)
@@ -113,9 +113,9 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
         logger.info('RUN TRY')
         destination_table = bqclient.get_table(table_id) # Make an API request.
         logger.info(f'destination table row before append - {destination_table.num_rows} ')
+        logger.info(f' number of files to append - {len(list_latest_csv_file)}')
         for f in list_latest_csv_file:
             file_uri = f"gs://{bucket_name}/" + f"{f}"
-            
             logger.info(f'append file - {f} ')
             job_config = bigquery.LoadJobConfig(
                 schema=schema,
@@ -134,7 +134,8 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
     # when table is not created, then run the below code
     except NotFound:
         logger.info('RUN EXCEPT')
-        for f in list_csv_file_with_latest_adjust_schema:
+        logger.info(f' number of files to append - {len(list_all_csv_file_with_latest_adjust_schema)}')
+        for f in list_all_csv_file_with_latest_adjust_schema:
             file_uri = f"gs://{bucket_name}/" + f"{f}"
             logger.info(f'append file - {f} ')
             job_config = bigquery.LoadJobConfig(
