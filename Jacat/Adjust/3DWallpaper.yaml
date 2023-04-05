@@ -1,11 +1,11 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'main-flow'
 ###
-name: jacat
+name: govo
 description: null
 version: null
 # The work queue that will handle this deployment's runs
-work_queue_name: ball_run
+work_queue_name: d_wallpaper
 work_pool_name: null
 tags: []
 parameters: {}
@@ -26,7 +26,7 @@ infrastructure:
 ###
 ### DO NOT EDIT BELOW THIS LINE
 ###
-flow_name: ball_run
+flow_name: 3d_wallpaper
 manifest_path: null
 storage: null
 path: /app
@@ -37,4 +37,4 @@ parameter_openapi_schema:
   properties: {}
   required: null
   definitions: null
-timestamp: '2023-04-05T03:31:59.025171+00:00'
+timestamp: '2023-04-04T07:16:02.618027+00:00'

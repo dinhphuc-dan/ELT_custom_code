@@ -37,7 +37,9 @@ def slack_noti(text_input,AppName=os.getenv('APP_NAME')):
     slack_webhook_block.notify(f"Flow {AppName} {text_input}")
 
 @flow(flow_run_name="{AppName}-on-{date:%Y-%m-%d-%H-%M-%S}",
-      timeout_seconds=3600 
+      timeout_seconds=3600,
+      retries=1,
+      retry_delay_seconds=10 
 )
 def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
                          ServiceAccountEnv=os.getenv('SERVICE_ACCOUNT'),
@@ -99,8 +101,6 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
                 schema_id_from_adjust = item
                 list_csv_file_with_latest_adjust_schema.append(k)
 
-    logger.info(f' number of files to append - {len(list_latest_csv_file)}')
-
     ''' bigquery credential'''
     bqclient = bigquery.Client(credentials=credentials)
     table_id = f"{ProjectId}.{Dataset}.{schema_id_from_adjust}" # set table id with schema hash from adjust
@@ -113,6 +113,7 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
         logger.info('RUN TRY')
         destination_table = bqclient.get_table(table_id) # Make an API request.
         logger.info(f'destination table row before append - {destination_table.num_rows} ')
+        logger.info(f' number of files to append - {len(list_latest_csv_file)}')
         for f in list_latest_csv_file:
             file_uri = f"gs://{bucket_name}/" + f"{f}"
             
@@ -134,6 +135,7 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
     # when table is not created, then run the below code
     except NotFound:
         logger.info('RUN EXCEPT')
+        logger.info(f' number of files to append - {len(list_csv_file_with_latest_adjust_schema)}')
         for f in list_csv_file_with_latest_adjust_schema:
             file_uri = f"gs://{bucket_name}/" + f"{f}"
             logger.info(f'append file - {f} ')
@@ -152,9 +154,7 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
         logger.info(f'destination table row after append- {destination_table.num_rows} ')
 
 @flow(flow_run_name="{AppName}-on-{date:%Y-%m-%d-%H-%M-%S}",
-      timeout_seconds=3600,
-      retries=0,
-      retry_delay_seconds=10   
+      timeout_seconds=3600  
 )
 def main_flow(AppName=os.getenv('APP_NAME'), date=datetime.datetime.now()):
     slack_noti("Run")
