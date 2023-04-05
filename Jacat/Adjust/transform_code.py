@@ -53,7 +53,7 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
     list_files_as_dict: dict = {}
     list_latest_csv_file: list = []
     adjust_export_schema: set = set()
-    list_csv_file_with_latest_adjust_schema: list = []
+    list_all_csv_file_with_latest_adjust_schema: list = []
 
     ''' storage credential'''
     service_account_info = json.loads(ServiceAccountEnv)
@@ -99,7 +99,7 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
         for k,v in list_files_as_dict.items():
             if v[2] == item:
                 schema_id_from_adjust = item
-                list_csv_file_with_latest_adjust_schema.append(k)
+                list_all_csv_file_with_latest_adjust_schema.append(k)
 
     ''' bigquery credential'''
     bqclient = bigquery.Client(credentials=credentials)
@@ -135,8 +135,8 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
     # when table is not created, then run the below code
     except NotFound:
         logger.info('RUN EXCEPT')
-        logger.info(f' number of files to append - {len(list_csv_file_with_latest_adjust_schema)}')
-        for f in list_csv_file_with_latest_adjust_schema:
+        logger.info(f' number of files to append - {len(list_all_csv_file_with_latest_adjust_schema)}')
+        for f in list_all_csv_file_with_latest_adjust_schema:
             file_uri = f"gs://{bucket_name}/" + f"{f}"
             logger.info(f'append file - {f} ')
             job_config = bigquery.LoadJobConfig(
