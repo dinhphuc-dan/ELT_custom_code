@@ -122,7 +122,11 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
                 schema=schema,
                 skip_leading_rows=1,
                 source_format=bigquery.SourceFormat.CSV,
-                write_disposition=bigquery.WriteDisposition.WRITE_APPEND
+                write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
+                time_partitioning=bigquery.TimePartitioning(
+                    type_=bigquery.TimePartitioningType.DAY,
+                    field="_created_at_"
+                    ) 
             )
             # Make an API request.
             load_job = bqclient.load_table_from_uri(
@@ -143,7 +147,11 @@ def transform_adjust_raw(AppName=os.getenv('APP_NAME'),
                 schema=schema,
                 skip_leading_rows=1,
                 source_format=bigquery.SourceFormat.CSV,
-                write_disposition=bigquery.WriteDisposition.WRITE_APPEND
+                write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
+                time_partitioning=bigquery.TimePartitioning(
+                    type_=bigquery.TimePartitioningType.DAY,
+                    field="_created_at_"
+                    ) 
             )
             # Make an API request.
             load_job = bqclient.load_table_from_uri(

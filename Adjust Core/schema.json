@@ -42,7 +42,7 @@
     {
       "mode": "NULLABLE",
       "name": "_created_at_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
