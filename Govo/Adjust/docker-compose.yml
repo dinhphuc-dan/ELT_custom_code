@@ -1,9 +1,10 @@
 version: "3.9"
 services:  
   d_wallpaper:
-    image: phucdinh/adjust_transform_raw_csv:2023-04-05
+    image: phucdinh/adjust_transform_raw_csv:2023-04-06
     container_name: d_wallpaper 
     profiles:
+      - govo
       - d_wallpaper
     restart: unless-stopped
     entrypoint: ["prefect", "agent", "start", "-q", "d_wallpaper"]
