@@ -1,9 +1,10 @@
 version: "3.9"
 services:
   ball_run:
-    image: phucdinh/adjust_transform_raw_csv:2023-04-05
+    image: phucdinh/adjust_transform_raw_csv:2023-04-06
     container_name: ball_run 
     profiles:
+      - jacat
       - ball_run
     restart: unless-stopped
     entrypoint: ["prefect", "agent", "start", "-q", "ball_run"]
