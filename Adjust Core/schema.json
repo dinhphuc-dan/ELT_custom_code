@@ -16,22 +16,12 @@
     },
     {
       "mode": "NULLABLE",
-      "name": "_app_version_raw_",
-      "type": "STRING"
-    },
-    {
-      "mode": "NULLABLE",
       "name": "_app_token_",
       "type": "STRING"
     },
     {
       "mode": "NULLABLE",
       "name": "_store_",
-      "type": "STRING"
-    },
-    {
-      "mode": "NULLABLE",
-      "name": "_sdk_version_",
       "type": "STRING"
     },
     {
@@ -46,13 +36,8 @@
     },
     {
       "mode": "NULLABLE",
-      "name": "_created_at_milli_",
-      "type": "INTEGER"
-    },
-    {
-      "mode": "NULLABLE",
       "name": "_received_at_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
@@ -71,13 +56,8 @@
     },
     {
       "mode": "NULLABLE",
-      "name": "_engagement_time_",
-      "type": "INTEGER"
-    },
-    {
-      "mode": "NULLABLE",
       "name": "_attribution_updated_at_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
@@ -92,7 +72,7 @@
     {
       "mode": "NULLABLE",
       "name": "_click_time_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
@@ -111,13 +91,8 @@
     },
     {
       "mode": "NULLABLE",
-      "name": "_network_type_",
-      "type": "STRING"
-    },
-    {
-      "mode": "NULLABLE",
       "name": "_reattributed_at_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
@@ -262,17 +237,17 @@
     {
       "mode": "NULLABLE",
       "name": "_installed_at_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
       "name": "_uninstalled_at_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
       "name": "_reinstalled_at_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
@@ -297,17 +272,17 @@
     {
       "mode": "NULLABLE",
       "name": "_install_begin_time_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
       "name": "_install_finish_time_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
       "name": "_last_session_time_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
@@ -361,12 +336,27 @@
     },
     {
       "mode": "NULLABLE",
-      "name": "_adgroup_name_",
+      "name": "_ad_revenue_payload_",
       "type": "STRING"
     },
     {
       "mode": "NULLABLE",
       "name": "_tracker_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_campaign_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_adgroup_name_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_creative_name_",
       "type": "STRING"
     },
     {
@@ -383,21 +373,6 @@
       "mode": "NULLABLE",
       "name": "_sk_campaign_id_",
       "type": "STRING"
-    },
-    {
-      "mode": "NULLABLE",
-      "name": "_campaign_name_",
-      "type": "STRING"
-    },
-    {
-      "mode": "NULLABLE",
-      "name": "_creative_name_",
-      "type": "STRING"
-    },
-    {
-      "mode": "NULLABLE",
-      "name": "_is_organic_",
-      "type": "INTEGER"
     },
     {
       "mode": "NULLABLE",
@@ -496,6 +471,31 @@
     },
     {
       "mode": "NULLABLE",
+      "name": "_cost_ammount_",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_cost_currency_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_cost_type_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_event_cost_id_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_reporting_cost_",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "NULLABLE",
       "name": "_subscription_environment_",
       "type": "STRING"
     },
@@ -532,7 +532,7 @@
     {
       "mode": "NULLABLE",
       "name": "_subscription_purchased_at_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     },
     {
       "mode": "NULLABLE",
@@ -547,7 +547,7 @@
     {
       "mode": "NULLABLE",
       "name": "_subscription_cancelled_at_",
-      "type": "INTEGER"
+      "type": "TIMESTAMP"
     }
   ]
   

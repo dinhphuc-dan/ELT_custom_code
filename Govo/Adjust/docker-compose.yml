@@ -1,7 +1,7 @@
 version: "3.9"
 services:  
   d_wallpaper:
-    image: phucdinh/adjust_transform_raw_csv:2023-04-06
+    image: phucdinh/adjust_transform_raw_csv:2023-04-14
     container_name: d_wallpaper 
     profiles:
       - govo
