@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   ball_run:
-    image: phucdinh/adjust_transform_raw_csv:2023-04-06
+    image: phucdinh/adjust_transform_raw_csv:2023-04-14
     container_name: ball_run 
     profiles:
       - jacat
@@ -16,5 +16,22 @@ services:
       - BUCKET_NAME=${ball_run_BUCKET_NAME}
       - PROJECT_ID=${ball_run_PROJECT_ID}
       - DATASET=${ball_run_DATASET}
+
+  emoji_puzzle:
+    image: phucdinh/adjust_transform_raw_csv:2023-04-14
+    container_name: emoji_puzzle 
+    profiles:
+      - jacat
+      - emoji_puzzle
+    restart: unless-stopped
+    entrypoint: ["prefect", "agent", "start", "-q", "emoji_puzzle"]
+    environment:
+      - PREFECT_API_URL=${PREFECT_API_URL}
+      - PREFECT_API_KEY=${PREFECT_API_KEY}
+      - APP_NAME=${emoji_puzzle_APP_NAME}
+      - SERVICE_ACCOUNT=${emoji_puzzle_SERVICE_ACCOUNT}
+      - BUCKET_NAME=${emoji_puzzle_BUCKET_NAME}
+      - PROJECT_ID=${emoji_puzzle_PROJECT_ID}
+      - DATASET=${emoji_puzzle_DATASET}
  
 
