@@ -18,3 +18,21 @@ services:
       - DATASET=${d_wallpaper_DATASET}
 
 
+  flash_alert:
+    image: phucdinh/adjust_transform_raw_csv:2023-04-14
+    container_name: flash_alert 
+    profiles:
+      - govo
+      - flash_alert
+    restart: unless-stopped
+    entrypoint: ["prefect", "agent", "start", "-q", "flash_alert"]
+    environment:
+      - PREFECT_API_URL=${PREFECT_API_URL}
+      - PREFECT_API_KEY=${PREFECT_API_KEY}
+      - APP_NAME=${flash_alert_APP_NAME}
+      - SERVICE_ACCOUNT=${flash_alert_SERVICE_ACCOUNT}
+      - BUCKET_NAME=${flash_alert_BUCKET_NAME}
+      - PROJECT_ID=${flash_alert_PROJECT_ID}
+      - DATASET=${flash_alert_DATASET}
+
+
