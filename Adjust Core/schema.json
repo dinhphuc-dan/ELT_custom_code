@@ -551,7 +551,12 @@
     },
     {
       "mode": "NULLABLE",
-      "name": "param",
+      "name": "_param_custom_",
+      "type": "STRING"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "_partner_parameters_",
       "type": "STRING"
     }
   ]
