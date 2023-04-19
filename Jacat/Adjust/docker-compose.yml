@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   ball_run:
-    image: phucdinh/adjust_transform_raw_csv:2023-04-14
+    image: phucdinh/adjust_transform_raw_csv:2023-04-19
     container_name: ball_run 
     profiles:
       - jacat
@@ -18,7 +18,7 @@ services:
       - DATASET=${ball_run_DATASET}
 
   emoji_puzzle:
-    image: phucdinh/adjust_transform_raw_csv:2023-04-14
+    image: phucdinh/adjust_transform_raw_csv:2023-04-19
     container_name: emoji_puzzle 
     profiles:
       - jacat

@@ -548,6 +548,11 @@
       "mode": "NULLABLE",
       "name": "_subscription_cancelled_at_",
       "type": "TIMESTAMP"
+    },
+    {
+      "mode": "NULLABLE",
+      "name": "param",
+      "type": "STRING"
     }
   ]
   

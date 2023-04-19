@@ -1,7 +1,7 @@
 version: "3.9"
 services:  
   d_wallpaper:
-    image: phucdinh/adjust_transform_raw_csv:2023-04-14
+    image: phucdinh/adjust_transform_raw_csv:2023-04-19
     container_name: d_wallpaper 
     profiles:
       - govo
@@ -19,7 +19,7 @@ services:
 
 
   flash_alert:
-    image: phucdinh/adjust_transform_raw_csv:2023-04-14
+    image: phucdinh/adjust_transform_raw_csv:2023-04-19
     container_name: flash_alert 
     profiles:
       - govo
