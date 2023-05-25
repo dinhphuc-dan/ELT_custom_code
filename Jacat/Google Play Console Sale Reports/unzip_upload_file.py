@@ -27,7 +27,7 @@ last_month_date: str = datetime.strftime((datetime.today() - relativedelta(month
 #bigquery config
 email_bigquery_owner: str = "airbytebigquery@jacat-all-game-data.iam.gserviceaccount.com"
 project_id = "jacat-all-game-data"
-dataset_id = "local_raw_in_app_purchase_all_games_and_ios_apps"
+dataset_id = "local_raw_in_app_purchase_all_games_google_play_store"
 
 
 """function task which does not need to tracking"""
