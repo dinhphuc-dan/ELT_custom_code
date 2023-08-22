@@ -12,7 +12,7 @@ from prefect.blocks.notifications import SlackWebhook
 # path
 cwd: str = Path(__file__).parent.absolute()
 base_local_path: str = fr"{cwd}\zipfile\sales"
-path_google_play_console_sale_reports: str = r"gs://pubsite_prod_rev_16718487201700810336/sales"
+path_google_play_console_sale_reports: str = r"gs://pubsite_prod_rev_16718487201700810336/sales/"
 path_savefile_in_bucket: str = r"gs://pion_tech/local"
 path_zipfile_in_bucket: str = r"gs://pion_tech/local/sales"
 path_csvfile_in_bucket: str = r"gs://pion_tech/local/csv_sales"
@@ -21,12 +21,12 @@ path_csvfile_inlocal: str = fr"{cwd}\unzipfile\csv_sales"
 file_path_to_check: str = fr"{cwd}\zipfile\sales\salesreport_202301.zip"
 
 #date
-start_date:str = '2023-01-01'
+start_date:str = '2023-06-01'
 last_month_date: str = datetime.strftime((datetime.today() - relativedelta(months=1)),'%Y-%m-%d')
 
 #bigquery config
 # email_bigquery_owner: str = "github@piontech.co"
-email_bigquery_owner: str = "airbyte-bigquery@all-app-data-374902.iam.gserviceaccount.com"
+email_bigquery_owner: str = "bigquery-admin@all-app-data-374902.iam.gserviceaccount.com"
 project_id = "all-app-data-374902"
 dataset_id = "local_raw_in_app_purchase_all_apps"
 
