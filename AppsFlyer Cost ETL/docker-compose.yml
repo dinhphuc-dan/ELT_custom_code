@@ -1,0 +1,17 @@
+version: "3.9"
+services:  
+  appsflyer_cost:
+    image: phucdinh/appsflyer-cost-etl-gcs-to-bigquery-prefect-io-local-host:2023-09-01
+    container_name: appsflyer_cost
+    restart: unless-stopped
+    entrypoint: ["prefect", "agent", "start", "-q", "APPSFLYER_COST"]
+    environment:
+      - PREFECT_API_URL=${PREFECT_API_URL}
+      - PREFECT_API_KEY=${PREFECT_API_KEY}
+      - SERVICE_ACCOUNT=${SERVICE_ACCOUNT}
+      - BUCKET_NAME=${BUCKET_NAME}
+      - PROJECT_ID=${PROJECT_ID}
+      - DATASET_ID=${DATASET_ID}
+
+
+

@@ -2,3 +2,7 @@
 Dockerfile
 docker-compose*.yml
 *.yaml
+.env
+env
+pyvenv.cfg
+.python-version
