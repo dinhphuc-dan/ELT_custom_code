@@ -1,0 +1,6 @@
+prefect == 2.11.5
+anyio<4.0.0
+google-cloud-storage
+pathlib
+google-cloud-bigquery
+python-dotenv
