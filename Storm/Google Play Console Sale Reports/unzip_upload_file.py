@@ -18,10 +18,10 @@ path_zipfile_in_bucket: str = r"gs://jacat_game/storm/sales"
 path_csvfile_in_bucket: str = r"gs://jacat_game/storm/csv_sales"
 path_zipfile_in_local: str = fr"{cwd}\zipfile"
 path_csvfile_inlocal: str = fr"{cwd}\unzipfile\csv_sales"
-file_path_to_check: str = fr"{cwd}\zipfile\sales\salesreport_202307.zip"
+file_path_to_check: str = fr"{cwd}\zipfile\sales\salesreport_202309.zip"
 
 #date
-start_date:str = '2023-07-17'
+start_date:str = '2023-09-01'
 last_month_date: str = datetime.strftime((datetime.today() - relativedelta(months=1)),'%Y-%m-%d')
 
 #bigquery config
@@ -143,8 +143,8 @@ def load_all_table_bigquery(project_id: str, dataset_id: str, start_date:str, pa
 
 """main flow"""
 @flow(timeout_seconds=3600)
-def govo_7h20_Google_Play_Console_sale_reports():
-    slack_noti("Flow Jacat-Google Play Console Report start running")
+def storm_7h20_Google_Play_Console_sale_reports():
+    slack_noti("Flow Storm-Google Play Console Report start running")
     change_gcloud_account(account=email_bigquery_owner)
     copy_file_from_GPC(path_from=path_google_play_console_sale_reports, path_to=path_savefile_in_bucket)
     download_file_from_bucket(path_from=path_zipfile_in_bucket, path_to=path_zipfile_in_local)
@@ -153,7 +153,7 @@ def govo_7h20_Google_Play_Console_sale_reports():
     load_csv_file_to_bucket(path_from=path_csvfile_inlocal, path_to=path_savefile_in_bucket)
     delete_all_table_bigquery(project_id=project_id, dataset_id=dataset_id, start_date=last_month_date)
     load_all_table_bigquery(project_id=project_id, dataset_id=dataset_id, start_date=last_month_date, path=path_csvfile_in_bucket )
-    slack_noti("Flow Jacat-Google Play Console Report run successfully")
+    slack_noti("Flow Storm-Google Play Console Report run successfully")
 
 if __name__ == "__main__":
-    govo_7h20_Google_Play_Console_sale_reports()
+    storm_7h20_Google_Play_Console_sale_reports()
