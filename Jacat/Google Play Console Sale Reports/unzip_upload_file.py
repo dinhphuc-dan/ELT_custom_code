@@ -143,7 +143,7 @@ def load_all_table_bigquery(project_id: str, dataset_id: str, start_date:str, pa
 
 """main flow"""
 @flow(timeout_seconds=3600)
-def govo_7h20_Google_Play_Console_sale_reports():
+def jacat_7h20_Google_Play_Console_sale_reports():
     slack_noti("Flow Jacat-Google Play Console Report start running")
     change_gcloud_account(account=email_bigquery_owner)
     copy_file_from_GPC(path_from=path_google_play_console_sale_reports, path_to=path_savefile_in_bucket)
@@ -156,4 +156,4 @@ def govo_7h20_Google_Play_Console_sale_reports():
     slack_noti("Flow Jacat-Google Play Console Report run successfully")
 
 if __name__ == "__main__":
-    govo_7h20_Google_Play_Console_sale_reports()
+    jacat_7h20_Google_Play_Console_sale_reports()
