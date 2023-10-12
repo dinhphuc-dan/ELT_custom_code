@@ -1,0 +1,25 @@
+IAPJacat
+- 7h15
+- "D:\ELT_custom_code\Jacat\Google Play Console Sale Reports\run_unzip_upload_file.bat"
+IAPGovo
+- 7h20
+- "D:\ELT_custom_code\Govo\Google Play Console Sale Reports\run_unzip_upload_file.bat"
+IAPPion
+- 7h25
+- "D:\ELT_custom_code\Pion\Google Play Console Sale Reports\run_unzip_upload_file.bat"
+IAPWechoice
+- 7h30
+- "D:\ELT_custom_code\Wechoice\Google Play Console Sale Reports\run_unzip_upload_file.bat"
+IAPStorm
+- 7h35
+- "D:\ELT_custom_code\Storm\Google Play Console Sale Reports\run_unzip_upload_file.bat"
+
+
+
+Docker
+- "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+- At startup
+
+Shutdown 
+- 12h30
+- shutdown.exe

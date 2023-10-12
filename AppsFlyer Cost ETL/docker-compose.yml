@@ -1,7 +1,7 @@
 version: "3.9"
 services:  
   appsflyer_cost:
-    image: phucdinh/appsflyer-cost-etl-gcs-to-bigquery-prefect-io-local-host:2023-09-01
+    image: phucdinh/appsflyer-cost-etl-gcs-to-bigquery-prefect-io-local-host:v1.0.0
     container_name: appsflyer_cost
     restart: unless-stopped
     entrypoint: ["prefect", "agent", "start", "-q", "APPSFLYER_COST"]

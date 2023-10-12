@@ -1,0 +1,46 @@
+###
+### A complete description of a Prefect Deployment for flow 'IAP-main-flow'
+###
+name: Volio_IAP
+description: null
+version: null
+# The work queue that will handle this deployment's runs
+work_queue_name: VOLIO_IAP
+work_pool_name: null
+tags: []
+parameters: {}
+schedule: null
+is_schedule_active: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: IAP-main-flow
+manifest_path: null
+storage: null
+path: /app
+entrypoint: load_IAP_from_console_to_bigquery.py:IAP_main_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    date:
+      title: date
+      default: '2023-10-12T13:52:07.225324'
+      position: 0
+  required: null
+  definitions: null
+timestamp: '2023-10-12T06:52:07.227324+00:00'
+triggers: []
+enforce_parameter_schema: null

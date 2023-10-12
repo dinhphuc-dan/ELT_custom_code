@@ -1,0 +1,38 @@
+version: "3.9"
+services:  
+  d_wallpaper:
+    image: phucdinh/adjust_transform_raw_csv:2023-04-20
+    container_name: d_wallpaper 
+    profiles:
+      - govo
+      - d_wallpaper
+    restart: unless-stopped
+    entrypoint: ["prefect", "agent", "start", "-q", "d_wallpaper"]
+    environment:
+      - PREFECT_API_URL=${PREFECT_API_URL}
+      - PREFECT_API_KEY=${PREFECT_API_KEY}
+      - APP_NAME=${d_wallpaper_APP_NAME}
+      - SERVICE_ACCOUNT=${d_wallpaper_SERVICE_ACCOUNT}
+      - BUCKET_NAME=${d_wallpaper_BUCKET_NAME}
+      - PROJECT_ID=${d_wallpaper_PROJECT_ID}
+      - DATASET=${d_wallpaper_DATASET}
+
+
+  flash_alert:
+    image: phucdinh/adjust_transform_raw_csv:2023-04-20
+    container_name: flash_alert 
+    profiles:
+      - govo
+      - flash_alert
+    restart: unless-stopped
+    entrypoint: ["prefect", "agent", "start", "-q", "flash_alert"]
+    environment:
+      - PREFECT_API_URL=${PREFECT_API_URL}
+      - PREFECT_API_KEY=${PREFECT_API_KEY}
+      - APP_NAME=${flash_alert_APP_NAME}
+      - SERVICE_ACCOUNT=${flash_alert_SERVICE_ACCOUNT}
+      - BUCKET_NAME=${flash_alert_BUCKET_NAME}
+      - PROJECT_ID=${flash_alert_PROJECT_ID}
+      - DATASET=${flash_alert_DATASET}
+
+
