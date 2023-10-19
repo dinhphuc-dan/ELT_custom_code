@@ -64,7 +64,7 @@ class Google_IAP_to_Bigquery():
                 for name in zip_file.namelist(): # get each file in zip file
                     csv_file = BytesIO(zip_file.read(name)) # read file from zip file as bytes then put it into BytesIO to make an in-memory file
                     bq_table_id = dataset + '.' + re.match(r'[a-z0-9_]+', name).group() # set bigquery table id
-                    self.logger.info(f'{self.store_name} List files append to Bigquery: {list_date_not_in_bigquery}')
+                    self.logger.info(f'{self.store_name} List files append to Bigquery: {name}')
                     job_config = bigquery.LoadJobConfig(
                         source_format=bigquery.SourceFormat.CSV,
                         write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
