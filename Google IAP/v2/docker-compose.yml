@@ -1,9 +1,9 @@
 version: "3.9"
 services:  
-  appsflyer_cost:
+  prefect-agent-google-iap:
     image: phucdinh/google-play-iap:v1.0.0
-    container_name: volio_iap
+    container_name: prefect-agent-google-iap
     restart: unless-stopped
-    entrypoint: ["prefect", "agent", "start", "-q", "VOLIO_IAP"]
+    entrypoint: ["prefect", "agent", "start", "-q", "COMPANY_PC_VOLIO_IAP"]
     env_file:
       - .env
