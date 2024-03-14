@@ -95,10 +95,10 @@ class Google_IAP_to_Bigquery():
                     load_job.result()  # Waits for the job to complete
             
 '''main flow'''
-@flow(flow_run_name="IAP-on-{date:%Y-%m-%d-%H-%M-%S}",
+@flow(
       timeout_seconds=3600  
 )
-def IAP_main_flow(date=datetime.datetime.now()):
+def IAP_main_flow():
     logger = get_run_logger() # setup a logger instance from prefect.io, must stay inside a flow or a task of prefect
     list_store = json.loads(os.getenv('LIST_STORE'))
     list_instances = []
