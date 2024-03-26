@@ -6,3 +6,6 @@ docker-compose*.yml
 env
 pyvenv.cfg
 .python-version
+.venv
+__pycache__
+.prefectignore

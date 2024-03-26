@@ -1,7 +1,7 @@
 version: "3.9"
 services:  
   prefect-agent-google-iap:
-    image: phucdinh/google-play-iap:v1.0.1
+    image: phucdinh/google-play-iap:v1.0.2
     container_name: prefect-agent-google-iap
     restart: unless-stopped
     entrypoint: ["prefect", "agent", "start", "-q", "COMPANY_PC_VOLIO_IAP"]
